@@ -12,11 +12,16 @@ const styles = {
   plainImage: {
     width: "200px",
     height: "200px",
+    border: "2px solid #555",
   },
   list: {
     alignItems: "center",
     justifyContent: "center",
     display: "flex",
+    textAlign: "center",
+  },
+  betweenImage: {
+    marginLeft: "150px",
   },
 };
 function App() {
@@ -30,6 +35,9 @@ function App() {
           style={styles.shopImage}
         />
       </div>
+      <br />
+      <br />
+      <br />
       <div style={styles.list}>
         <div>
           <img
@@ -40,13 +48,22 @@ function App() {
           <p>Plain Croissant </p>
           <p>1 KD</p>
         </div>
-        <div>
+        <div style={styles.betweenImage}>
           <img
             src="https://www.womanscribbles.net/wp-content/uploads/2017/07/cream-cheese-croissants-7.jpg"
             alt="cheese croissant"
             style={styles.plainImage}
           />
           <p>cheese Croissant </p>
+          <p>1.500 KD</p>
+        </div>
+        <div style={styles.betweenImage}>
+          <img
+            src="https://images.deliveryhero.io/image/talabat/MenuItems/Mini_Zaatar_Croissant_637031804113079514.jpg"
+            alt="zaatar croissant"
+            style={styles.plainImage}
+          />
+          <p>Zaatar Croissant </p>
           <p>1.500 KD</p>
         </div>
       </div>
