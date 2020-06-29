@@ -1,15 +1,8 @@
 import React from "react";
-import items from "./items";
 import styles from "./styles";
+import BakeryList from "./components/BakeryList";
 
 function App() {
-  const bakeryList = items.map((item) => (
-    <div key={item.id}>
-      <img style={styles.plainImage} alt={item.name} src={item.image} />
-      <p style={styles.text}> {item.name} </p>
-      <p style={styles.text}> {item.price} KD</p>
-    </div>
-  ));
   return (
     <div>
       <div>
@@ -19,8 +12,9 @@ function App() {
           alt="bakery"
           style={styles.shopImage}
         />
+        <br></br>
       </div>
-      <div style={styles.list}> {bakeryList}</div>
+      <BakeryList />
     </div>
   );
 }
