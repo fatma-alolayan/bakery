@@ -4,7 +4,7 @@ import styles from "./styles";
 
 function App() {
   const bakeryList = items.map((item) => (
-    <div style={styles.list} key={item.id}>
+    <div key={item.id}>
       <img style={styles.plainImage} alt={item.name} src={item.image} />
       <p style={styles.text}> {item.name} </p>
       <p style={styles.text}> {item.price} KD</p>
@@ -20,7 +20,7 @@ function App() {
           style={styles.shopImage}
         />
       </div>
-      <div> {bakeryList}</div>
+      <div style={styles.list}> {bakeryList}</div>
     </div>
   );
 }
