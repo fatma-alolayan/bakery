@@ -1,21 +1,29 @@
 import React from "react";
-import styles from "./styles";
+import styles, { GlobalStyle } from "./styles";
 import BakeryList from "./components/BakeryList";
+import { Description, ShopImage, Title } from "./styles";
+import { ThemeProvider } from "styled-components";
 
+const theme = {
+  mainColor: "#242424", // main font color
+  backgroundColor: "#f6d2d6", // main background color
+  black: "#0e1111",
+};
 function App() {
   return (
-    <div>
-      <div>
-        <h1 style={styles.text}>Bakery</h1>
-        <img
-          src="https://coleofduty.com/wp-content/uploads/2020/05/Bread-Bakery.jpg"
-          alt="bakery"
-          style={styles.shopImage}
-        />
-        <br></br>
-      </div>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+
+      <Title>Bakery</Title>
+      <Description>Fresh</Description>
+      <ShopImage
+        src="https://coleofduty.com/wp-content/uploads/2020/05/Bread-Bakery.jpg"
+        alt="bakery"
+      />
+      <br></br>
+
       <BakeryList />
-    </div>
+    </ThemeProvider>
   );
 }
 

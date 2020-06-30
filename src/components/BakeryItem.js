@@ -2,17 +2,15 @@ import React from "react";
 // styles
 import styles from "../styles";
 
+import { BakeryWrapper } from "../styles";
+
 const BakeryItem = (props) => {
   return (
-    <div>
-      <img
-        src={props.item.image}
-        alt={props.item.name}
-        style={styles.plainImage}
-      />
+    <BakeryWrapper>
+      <img alt={props.item.name} src={props.item.image} />
       <p>{props.item.name}</p>
-      <p>{props.item.price} KD</p>
-    </div>
+      <p className="item-price"> {props.item.price} KD</p>
+    </BakeryWrapper>
   );
 };
 

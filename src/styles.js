@@ -1,29 +1,46 @@
-const styles = {
-  text: {
-    textAlign: "center",
-  },
+import styled, { createGlobalStyle } from "styled-components";
 
-  shopImage: {
-    display: "block",
-    marginLeft: "auto",
-    marginRight: "auto",
-    width: "20%",
-  },
-  plainImage: {
-    width: "200px",
-    height: "200px",
-    border: "2px solid #555",
-    marginLeft: "150px",
-  },
-  list: {
-    alignItems: "center",
-    justifyContent: "center",
-    display: "flex",
-    textAlign: "center",
-  },
-  betweenImage: {
-    marginLeft: "150px",
-  },
+const Title = styled.h1`
+  text-align: center;
+  color: brown;
+`;
+const Description = styled.h2`
+  text-align: center;
+`;
+const ShopImage = styled.img`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+`;
+const ListWrapper = styled.div`
+  align-items: center;
+  justify-content: center;
+  display: flex;
+`;
+const BakeryWrapper = styled.div`
+  margin: 20px;
+  img {
+    width: 200px;
+    height: 200px;
+  }
+  p {
+    text-align: center;
+    &.item-price {
+      color: ${(props) => props.theme.black};
+    }
+  }
+`;
+const GlobalStyle = createGlobalStyle`
+  body {
+    color: ${(props) => props.theme.mainColor};
+    background-color: ${(props) => props.theme.backgroundColor}
+  }
+`;
+export {
+  BakeryWrapper,
+  Description,
+  ListWrapper,
+  Title,
+  ShopImage,
+  GlobalStyle,
 };
-
-export default styles;

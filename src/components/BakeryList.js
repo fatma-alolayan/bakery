@@ -6,12 +6,14 @@ import items from "../items";
 //componants
 import BakeryItem from "./BakeryItem";
 
+import { ListWrapper } from "../styles";
+
 const BakeryList = () => {
   const itemsList = items.map((item) => (
     <BakeryItem item={item} key={item.id} />
   ));
 
-  return <div style={styles.list}>{itemsList}</div>;
+  return <ListWrapper>{itemsList}</ListWrapper>;
 };
 
 export default BakeryList;
