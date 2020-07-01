@@ -26,7 +26,9 @@ function App() {
   return (
     <ThemeProvider theme={theme[currentTheme]}>
       <GlobalStyle />
-      <ThemeButton onClick={toggleTheme}>Dark Theme</ThemeButton>
+      <ThemeButton onClick={toggleTheme}>
+        {currentTheme === "light" ? "Dark" : "Light"} Theme
+      </ThemeButton>
       <Title>Bakery</Title>
       <Description>Fresh</Description>
       <ShopImage
