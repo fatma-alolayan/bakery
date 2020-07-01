@@ -40,7 +40,7 @@ const GlobalStyle = createGlobalStyle`
 const ThemeButton = styled.button`
    {
     background-color: #c0babc;
-    color: white;
+    color: #0e1111;
     padding: 15px 32px;
     text-align: center;
     display: inline-block;
@@ -48,6 +48,9 @@ const ThemeButton = styled.button`
     margin: 4px 2px;
     cursor: pointer;
   }
+`;
+const DeleteButtonStyled = styled.p`
+  color: red;
 `;
 
 export {
@@ -58,4 +61,5 @@ export {
   ShopImage,
   GlobalStyle,
   ThemeButton,
+  DeleteButtonStyled,
 };
