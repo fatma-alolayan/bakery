@@ -1,9 +1,8 @@
 import React from "react";
-// styles
 
-import { BakeryWrapper, DeleteButtonStyled } from "../styles";
+import { DeleteButtonStyled, DetailWrapper } from "../styles";
 
-const BakeryItem = (props) => {
+const ItemDetail = (props) => {
   const item = props.item;
 
   const handleDelete = () => {
@@ -11,18 +10,18 @@ const BakeryItem = (props) => {
   };
 
   return (
-    <BakeryWrapper>
+    <DetailWrapper>
+      <h1>{item.name}</h1>
       <img
-        alt={item.name}
         src={item.image}
+        alt={item.name}
         onClick={() => props.selectItem(item.id)}
       />
-      <p>{props.item.name}</p>
-      <p className="item-price"> {props.item.price} KD</p>
+      <p>{item.description}</p>
+      <p>{item.price} KD</p>
 
       <DeleteButtonStyled onClick={handleDelete}>Delete</DeleteButtonStyled>
-    </BakeryWrapper>
+    </DetailWrapper>
   );
 };
-
-export default BakeryItem;
+export default ItemDetail;

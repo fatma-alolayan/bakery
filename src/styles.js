@@ -1,23 +1,23 @@
 import styled, { createGlobalStyle } from "styled-components";
 
-const Title = styled.h1`
+export const Title = styled.h1`
   text-align: center;
   color: brown;
 `;
-const Description = styled.h2`
+export const Description = styled.h2`
   text-align: center;
 `;
-const ShopImage = styled.img`
+export const ShopImage = styled.img`
   display: block;
   margin-left: auto;
   margin-right: auto;
 `;
-const ListWrapper = styled.div`
+export const ListWrapper = styled.div`
   align-items: center;
   justify-content: center;
   display: flex;
 `;
-const BakeryWrapper = styled.div`
+export const BakeryWrapper = styled.div`
   margin: 20px;
   img {
     width: 200px;
@@ -30,14 +30,14 @@ const BakeryWrapper = styled.div`
     }
   }
 `;
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   body {
     color: ${(props) => props.theme.mainColor};
     background-color: ${(props) => props.theme.backgroundColor}
   }
 `;
 
-const ThemeButton = styled.button`
+export const ThemeButton = styled.button`
    {
     background-color: #c0babc;
     color: #0e1111;
@@ -49,17 +49,22 @@ const ThemeButton = styled.button`
     cursor: pointer;
   }
 `;
-const DeleteButtonStyled = styled.p`
+export const DeleteButtonStyled = styled.p`
   color: red;
 `;
 
-export {
-  BakeryWrapper,
-  Description,
-  ListWrapper,
-  Title,
-  ShopImage,
-  GlobalStyle,
-  ThemeButton,
-  DeleteButtonStyled,
-};
+export const DetailWrapper = styled.div`
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+
+  img {
+    width: 40%;
+    float: left;
+  }
+
+  p {
+    vertical-align: middle;
+  }
+`;

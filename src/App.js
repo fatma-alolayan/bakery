@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 
-import styles, { GlobalStyle } from "./styles";
+import items from "./items";
 import BakeryList from "./components/BakeryList";
-import { Description, ShopImage, Title, ThemeButton } from "./styles";
+import {
+  Description,
+  ShopImage,
+  Title,
+  ThemeButton,
+  GlobalStyle,
+} from "./styles";
 import { ThemeProvider } from "styled-components";
+import ItemDetail from "./components/ItemDetail";
 
 const theme = {
   light: {
@@ -19,9 +26,34 @@ const theme = {
 };
 
 function App() {
-  let [currentTheme, setCurrentTheme] = useState("light");
+  const [currentTheme, setCurrentTheme] = useState("light");
+  const [item, setItem] = useState(null);
+  const [_item, setItems] = useState(items);
+
   const toggleTheme = () =>
     setCurrentTheme(currentTheme === "light" ? "dark" : "light");
+
+  const deleteItem = (itemId) => {
+    const updatedItems = _item.filter((item) => item.id !== +itemId);
+    setItems(updatedItems);
+    setItem(null);
+  };
+
+  const selectItem = (itemId) => {
+    const selectedItem = items.find((item) => item.id === itemId);
+    setItem(selectedItem);
+  };
+
+  const setView = () =>
+    item ? (
+      <ItemDetail item={item} deleteItem={deleteItem} />
+    ) : (
+      <BakeryList
+        items={_item}
+        selectItem={selectItem}
+        deleteItem={deleteItem}
+      />
+    );
 
   return (
     <ThemeProvider theme={theme[currentTheme]}>
@@ -37,7 +69,7 @@ function App() {
       />
       <br></br>
 
-      <BakeryList />
+      {setView()}
     </ThemeProvider>
   );
 }
