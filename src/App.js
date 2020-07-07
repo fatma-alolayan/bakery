@@ -1,15 +1,14 @@
 import React, { useState } from "react";
+import { Route, Switch } from "react-router";
 
-import items from "./items";
-import BakeryList from "./components/BakeryList";
-import {
-  Description,
-  ShopImage,
-  Title,
-  ThemeButton,
-  GlobalStyle,
-} from "./styles";
+//styles
+import { ThemeButton, GlobalStyle } from "./styles";
 import { ThemeProvider } from "styled-components";
+// Data
+import items from "./items";
+// component
+import Home from "./components/Home";
+import BakeryList from "./components/BakeryList";
 import ItemDetail from "./components/ItemDetail";
 
 const theme = {
@@ -27,7 +26,7 @@ const theme = {
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState("light");
-  const [item, setItem] = useState(null);
+  // const [item, setItem] = useState(null);
   const [_item, setItems] = useState(items);
 
   const toggleTheme = () =>
@@ -36,40 +35,33 @@ function App() {
   const deleteItem = (itemId) => {
     const updatedItems = _item.filter((item) => item.id !== +itemId);
     setItems(updatedItems);
-    setItem(null);
   };
 
-  const selectItem = (itemId) => {
-    const selectedItem = items.find((item) => item.id === itemId);
-    setItem(selectedItem);
-  };
-
-  const setView = () =>
-    item ? (
-      <ItemDetail item={item} deleteItem={deleteItem} />
-    ) : (
-      <BakeryList
-        items={_item}
-        selectItem={selectItem}
-        deleteItem={deleteItem}
-      />
-    );
+  // const selectItem = (itemId) => {
+  //   const selectedItem = items.find((item) => item.id === itemId);
+  //   setItem(selectedItem);
+  // };
 
   return (
     <ThemeProvider theme={theme[currentTheme]}>
       <GlobalStyle />
+
       <ThemeButton onClick={toggleTheme}>
         {currentTheme === "light" ? "Dark" : "Light"} Theme
       </ThemeButton>
-      <Title>Bakery</Title>
-      <Description>Fresh</Description>
-      <ShopImage
-        src="https://coleofduty.com/wp-content/uploads/2020/05/Bread-Bakery.jpg"
-        alt="bakery"
-      />
-      <br></br>
 
-      {setView()}
+      <Switch>
+        <Route path="/Bakery/:itemId">
+          <ItemDetail item={_item} deleteItem={deleteItem} />
+        </Route>
+
+        <Route path="/Bakery">
+          <BakeryList item={_item} deleteItem={deleteItem} />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
     </ThemeProvider>
   );
 }

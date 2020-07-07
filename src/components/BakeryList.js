@@ -1,8 +1,7 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+// style
 import { ListWrapper } from "../styles";
-
-// //data
-import items from "../items";
 
 //componants
 import BakeryItem from "./BakeryItem";
@@ -11,19 +10,17 @@ import SearchBar from "./SearchBar";
 const BakeryList = (props) => {
   const [query, setQuery] = useState("");
 
-  const itemsList = props.items
-    .filter((item) => item.name.toLowerCase().includes(query.toLowerCase()))
-    .map((item) => (
-      <BakeryItem
-        item={item}
-        key={item.id}
-        deleteItem={props.deleteItem}
-        selectItem={props.selectItem}
-      />
-    ));
+  const filteredItems = props.item.filter((item) =>
+    item.name.toLowerCase().includes(query.toLowerCase())
+  );
+
+  const itemsList = filteredItems.map((item) => (
+    <BakeryItem item={item} key={item.id} deleteItem={props.deleteItem} />
+  ));
 
   return (
     <>
+      <Link to="/">Home</Link>
       <SearchBar setQuery={setQuery} />
       <ListWrapper>{itemsList}</ListWrapper>;
     </>
