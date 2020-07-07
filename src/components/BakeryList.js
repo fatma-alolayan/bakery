@@ -1,23 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
+import { ListWrapper } from "../styles";
 
 // //data
 import items from "../items";
+
 //componants
 import BakeryItem from "./BakeryItem";
-
-import { ListWrapper } from "../styles";
+import SearchBar from "./SearchBar";
 
 const BakeryList = (props) => {
-  const itemsList = props.items.map((item) => (
-    <BakeryItem
-      item={item}
-      key={item.id}
-      deleteItem={props.deleteItem}
-      selectItem={props.selectItem}
-    />
-  ));
+  const [query, setQuery] = useState("");
 
-  return <ListWrapper>{itemsList}</ListWrapper>;
+  const itemsList = props.items
+    .filter((item) => item.name.toLowerCase().includes(query.toLowerCase()))
+    .map((item) => (
+      <BakeryItem
+        item={item}
+        key={item.id}
+        deleteItem={props.deleteItem}
+        selectItem={props.selectItem}
+      />
+    ));
+
+  return (
+    <>
+      <SearchBar setQuery={setQuery} />
+      <ListWrapper>{itemsList}</ListWrapper>;
+    </>
+  );
 };
 
 export default BakeryList;

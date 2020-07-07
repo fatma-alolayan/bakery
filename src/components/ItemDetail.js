@@ -1,13 +1,14 @@
 import React from "react";
+import DeleteButton from "./buttons/DeleteButton";
 
 import { DeleteButtonStyled, DetailWrapper } from "../styles";
 
 const ItemDetail = (props) => {
   const item = props.item;
 
-  const handleDelete = () => {
-    props.deleteItem(item.id);
-  };
+  // const handleDelete = () => {
+  //   props.deleteItem(item.id);
+  // };
 
   return (
     <DetailWrapper>
@@ -20,7 +21,7 @@ const ItemDetail = (props) => {
       <p>{item.description}</p>
       <p>{item.price} KD</p>
 
-      <DeleteButtonStyled onClick={handleDelete}>Delete</DeleteButtonStyled>
+      <DeleteButton itemId={item.id} deleteItem={props.deleteItem} />
     </DetailWrapper>
   );
 };
