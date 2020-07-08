@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 // style
-import { ListWrapper } from "../styles";
+import { ListWrapper, HomeButton } from "../styles";
 
 //componants
 import BakeryItem from "./BakeryItem";
@@ -20,9 +20,13 @@ const BakeryList = (props) => {
 
   return (
     <>
-      <Link to="/">Home</Link>
-      <SearchBar setQuery={setQuery} />
-      <ListWrapper>{itemsList}</ListWrapper>;
+      <Link to="/">
+        <HomeButton>Home</HomeButton>
+      </Link>
+      <div className="container">
+        <SearchBar setQuery={setQuery} />
+        <ListWrapper className="row">{itemsList}</ListWrapper>;
+      </div>
     </>
   );
 };

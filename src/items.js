@@ -2,6 +2,7 @@ const items = [
   {
     id: 1,
     name: "Plain Croissant",
+    slug: "plain-croissant",
     description: "Low Fat",
     price: 1,
     image:
@@ -10,6 +11,7 @@ const items = [
   {
     id: 2,
     name: "Cheese Croissant",
+    slug: "cheese-croissant",
     description: "Sugar Free ",
     price: 1.5,
     image:
@@ -18,6 +20,7 @@ const items = [
   {
     id: 3,
     name: "Zaatar Croissant",
+    slug: "zaatar-croissant",
     description: "Keto ",
     price: 1.5,
     image:

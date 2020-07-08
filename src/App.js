@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import { Route, Switch } from "react-router";
+import { Link, NavLink } from "react-router-dom";
+import logo from "./chef.png";
 
 //styles
-import { ThemeButton, GlobalStyle } from "./styles";
+import { ThemeButton, GlobalStyle, Logo, NavStyled } from "./styles";
 import { ThemeProvider } from "styled-components";
+
 // Data
 import items from "./items";
 // component
 import Home from "./components/Home";
 import BakeryList from "./components/BakeryList";
 import ItemDetail from "./components/ItemDetail";
+import NavBar from "./components/ItemDetail";
 
 const theme = {
   light: {
@@ -37,21 +41,22 @@ function App() {
     setItems(updatedItems);
   };
 
-  // const selectItem = (itemId) => {
-  //   const selectedItem = items.find((item) => item.id === itemId);
-  //   setItem(selectedItem);
-  // };
-
   return (
     <ThemeProvider theme={theme[currentTheme]}>
       <GlobalStyle />
 
+      <Logo to="/">
+        <img alt="logo" src={logo} />
+      </Logo>
+      <Link to="/Bakery" style={{ margin: 10 }}>
+        Bakery
+      </Link>
       <ThemeButton onClick={toggleTheme}>
-        {currentTheme === "light" ? "Dark" : "Light"} Theme
+        {currentTheme === "light" ? "Dark" : "Light"} Mode
       </ThemeButton>
 
       <Switch>
-        <Route path="/Bakery/:itemId">
+        <Route path="/Bakery/:itemSlug">
           <ItemDetail item={_item} deleteItem={deleteItem} />
         </Route>
 

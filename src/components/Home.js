@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import { Description, ShopImage, Title } from "../styles";
+import { Description, ShopImage, Title, HomeButton } from "../styles";
 
 const Home = () => {
   return (
     <>
-      <Link to="/Bakery">Bakery{""}</Link>
+      <Link to="/Bakery">
+        <HomeButton>Menu</HomeButton>
+      </Link>
       <Title>Bakery</Title>
       <Description>Fresh</Description>
       <ShopImage
