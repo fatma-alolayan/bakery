@@ -1,24 +1,25 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
+//logo
+import logo from "../chef.png";
 
 // Styling
-import { ThemeButton } from "../styles";
-//logo
+import { Logo, ThemeButton, NavStyled, NavItem } from "../styles";
 
-import logo from "./chef.png";
-const NavBar = (props) => {
+const NavBar = ({ currentTheme, toggleTheme }) => {
   return (
-    <NavStyled className="navbar navbar-expand-lg">
+    <NavStyled className="navbar navbar-expand-lg ">
       <Logo className="navbar-brand" to="/">
-        <img src={logo} alt="logo" />
+        <img alt="logo" src={logo} />
       </Logo>
+
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav ml-auto">
-          <Link className="nav-item" to="/items">
+          <NavItem className="nav-item" to="/Bakery">
             Bakery
-          </Link>
-          <ThemeButton className="nav-item" onClick={props.toggleTheme}>
-            {props.currentTheme === "light" ? "Dark" : "Light"} Theme
+          </NavItem>
+          <ThemeButton className="nav-item " onClick={toggleTheme}>
+            {currentTheme === "light" ? "Dark" : "Light"} Mode
           </ThemeButton>
         </div>
       </div>

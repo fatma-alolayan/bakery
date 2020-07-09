@@ -7,26 +7,21 @@ import { ListWrapper, HomeButton } from "../styles";
 import BakeryItem from "./BakeryItem";
 import SearchBar from "./SearchBar";
 
-const BakeryList = (props) => {
+const BakeryList = ({ item, deleteItem }) => {
   const [query, setQuery] = useState("");
 
-  const filteredItems = props.item.filter((item) =>
+  const filteredItems = item.filter((item) =>
     item.name.toLowerCase().includes(query.toLowerCase())
   );
 
   const itemsList = filteredItems.map((item) => (
-    <BakeryItem item={item} key={item.id} deleteItem={props.deleteItem} />
+    <BakeryItem item={item} key={item.id} deleteItem={deleteItem} />
   ));
 
   return (
     <>
-      <Link to="/">
-        <HomeButton>Home</HomeButton>
-      </Link>
-      <div className="container">
-        <SearchBar setQuery={setQuery} />
-        <ListWrapper className="row">{itemsList}</ListWrapper>;
-      </div>
+      <SearchBar setQuery={setQuery} />
+      <ListWrapper>{itemsList}</ListWrapper>;
     </>
   );
 };

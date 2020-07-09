@@ -19,6 +19,7 @@ export const ShopImage = styled.img`
 export const ListWrapper = styled.div`
   align-items: center;
   justify-content: center;
+
   display: flex;
 `;
 export const BakeryWrapper = styled.div`
@@ -69,11 +70,11 @@ export const DeleteButtonStyled = styled.p`
 
 export const DetailWrapper = styled.div`
   text-align: center;
+
   img {
     width: 250px;
     border: 2px solid gray;
     padding: 3px;
-    float: left;
   }
 
   p {
@@ -102,7 +103,7 @@ export const Logo = styled(Link)`
   padding: 0.75em;
 
   img {
-    width: 8rem;
+    width: 80px;
   }
 `;
 export const NavStyled = styled.nav`
@@ -114,7 +115,6 @@ export const NavItem = styled(NavLink)`
   color: ${(props) => props.theme.mainColor};
 
   &.active {
-    color: ${(props) => props.theme.pink};
-    background-color: gray;
+    color: brown;
   }
 `;

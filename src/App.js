@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Route, Switch } from "react-router";
-import { Link, NavLink } from "react-router-dom";
-import logo from "./chef.png";
 
 //styles
-import { ThemeButton, GlobalStyle, Logo, NavStyled } from "./styles";
+import { GlobalStyle } from "./styles";
+// theme
 import { ThemeProvider } from "styled-components";
 
 // Data
@@ -13,7 +12,7 @@ import items from "./items";
 import Home from "./components/Home";
 import BakeryList from "./components/BakeryList";
 import ItemDetail from "./components/ItemDetail";
-import NavBar from "./components/ItemDetail";
+import NavBar from "./components/NavBar";
 
 const theme = {
   light: {
@@ -30,7 +29,6 @@ const theme = {
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState("light");
-  // const [item, setItem] = useState(null);
   const [_item, setItems] = useState(items);
 
   const toggleTheme = () =>
@@ -44,20 +42,10 @@ function App() {
   return (
     <ThemeProvider theme={theme[currentTheme]}>
       <GlobalStyle />
-
-      <Logo to="/">
-        <img alt="logo" src={logo} />
-      </Logo>
-      <Link to="/Bakery" style={{ margin: 10 }}>
-        Bakery
-      </Link>
-      <ThemeButton onClick={toggleTheme}>
-        {currentTheme === "light" ? "Dark" : "Light"} Mode
-      </ThemeButton>
-
+      <NavBar toggleTheme={toggleTheme} currentTheme={currentTheme} />
       <Switch>
         <Route path="/Bakery/:itemSlug">
-          <ItemDetail item={_item} deleteItem={deleteItem} />
+          <ItemDetail items={_item} deleteItem={deleteItem} />
         </Route>
 
         <Route path="/Bakery">

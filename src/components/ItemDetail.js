@@ -3,32 +3,27 @@ import { useParams, Link, Redirect } from "react-router-dom";
 
 import DeleteButton from "./buttons/DeleteButton";
 
-import { ListWrapper, DetailWrapper, Description, HomeButton } from "../styles";
+import { ListWrapper, DetailWrapper } from "../styles";
 
-const ItemDetail = (props) => {
+const ItemDetail = ({ items, deleteItem }) => {
   const { itemSlug } = useParams();
 
-  const item = props.item.find((item) => item.slug === itemSlug);
+  const item = items.find((item) => item.slug === itemSlug);
 
   if (!item) return <Redirect to="/Bakery" />;
 
   return (
-    <>
-      <ListWrapper>
-        <DetailWrapper>
-          <Link to="/Bakery">
-            <HomeButton>Back</HomeButton>
-          </Link>
+    <ListWrapper>
+      <DetailWrapper>
+        <h1>{item.name}</h1>
 
-          <h1>{item.name}</h1>
-          <img src={item.image} alt={item.name} />
-          <p>{item.description}</p>
-          <p>{item.price} KD</p>
+        <img src={item.image} alt={item.name} />
+        <p>{item.description}</p>
+        <p>{item.price} KD</p>
 
-          <DeleteButton itemId={item.id} deleteItem={props.deleteItem} />
-        </DetailWrapper>
-      </ListWrapper>
-    </>
+        <DeleteButton itemId={item.id} deleteItem={deleteItem} />
+      </DetailWrapper>
+    </ListWrapper>
   );
 };
 export default ItemDetail;

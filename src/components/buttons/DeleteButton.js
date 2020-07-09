@@ -3,9 +3,9 @@ import React from "react";
 // styles
 import { DeleteButtonStyled } from "../../styles";
 
-const DeleteButton = (props) => {
+const DeleteButton = ({ itemId, deleteItem }) => {
   const handleDelete = () => {
-    props.deleteItem(props.itemId);
+    deleteItem(itemId);
   };
 
   return <DeleteButtonStyled onClick={handleDelete}>Delete</DeleteButtonStyled>;
