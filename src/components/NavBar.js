@@ -18,9 +18,21 @@ const NavBar = ({ currentTheme, toggleTheme }) => {
           <NavItem className="nav-item" to="/Bakery">
             Bakery
           </NavItem>
-          <ThemeButton className="nav-item " onClick={toggleTheme}>
+
+          <div class="custom-control custom-switch">
+            <input
+              type="checkbox"
+              class="custom-control-input"
+              id="customSwitch1"
+              onChange={toggleTheme}
+            />
+            <label class="custom-control-label" for="customSwitch1">
+              {currentTheme === "light" ? "Dark" : "Light"} Mode
+            </label>
+          </div>
+          {/* <ThemeButton className="nav-item " onClick={toggleTheme}>
             {currentTheme === "light" ? "Dark" : "Light"} Mode
-          </ThemeButton>
+          </ThemeButton> */}
         </div>
       </div>
     </NavStyled>

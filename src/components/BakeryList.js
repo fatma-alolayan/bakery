@@ -21,7 +21,7 @@ const BakeryList = ({ item, deleteItem }) => {
   return (
     <>
       <SearchBar setQuery={setQuery} />
-      <ListWrapper>{itemsList}</ListWrapper>;
+      <ListWrapper>{itemsList}</ListWrapper>
     </>
   );
 };
