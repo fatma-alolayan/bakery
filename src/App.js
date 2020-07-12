@@ -39,6 +39,11 @@ function App() {
     setItems(updatedItems);
   };
 
+  const createItem = (newItem) => {
+    const updatedItems = [..._item, newItem];
+    setItems(updatedItems);
+  };
+
   return (
     <ThemeProvider theme={theme[currentTheme]}>
       <GlobalStyle />
@@ -49,7 +54,11 @@ function App() {
         </Route>
 
         <Route path="/Bakery">
-          <BakeryList item={_item} deleteItem={deleteItem} />
+          <BakeryList
+            item={_item}
+            deleteItem={deleteItem}
+            createItem={createItem}
+          />
         </Route>
         <Route path="/">
           <Home />
