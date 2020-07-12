@@ -3,6 +3,17 @@ import Modal from "react-modal";
 //styles
 import { CreateButtonStyled } from "../../styles";
 
+const customStyle = {
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%,-50%)",
+  },
+};
+
 const BakeryModal = ({ isOpen, closeModal, createItem }) => {
   const [item, setItem] = useState({
     name: "",
@@ -22,7 +33,12 @@ const BakeryModal = ({ isOpen, closeModal, createItem }) => {
   };
 
   return (
-    <Modal isOpen={isOpen} closeModal={closeModal} contentLabel="Bakery Modal">
+    <Modal
+      isOpen={isOpen}
+      closeModal={closeModal}
+      style={customStyle}
+      contentLabel="Bakery Modal"
+    >
       <h3>New Item</h3>
       <form onSubmit={handleSubmit}>
         <div className="form-group row">
