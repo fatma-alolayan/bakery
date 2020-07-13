@@ -13,6 +13,12 @@ class ItemStore {
     this.items.push(newItem);
   };
 
+  updateItem = (updatedItem) => {
+    const item = this.items.find((item) => item.id === updatedItem.id);
+
+    for (const key in item) item[key] = updatedItem[key];
+  };
+
   deleteItem = (itemId) => {
     this.items = this.items.filter((item) => item.id !== +itemId);
   };
