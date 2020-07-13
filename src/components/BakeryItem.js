@@ -5,7 +5,7 @@ import { BakeryWrapper } from "../styles";
 // component
 import DeleteButton from "./buttons/DeleteButton";
 
-const BakeryItem = ({ item, deleteItem }) => {
+const BakeryItem = ({ item }) => {
   return (
     <BakeryWrapper>
       <Link to={`/Bakery/${item.slug}`}>
@@ -14,7 +14,7 @@ const BakeryItem = ({ item, deleteItem }) => {
       <p>{item.name}</p>
       <p className="item-price"> {item.price} KD</p>
 
-      <DeleteButton itemId={item.id} deleteItem={deleteItem} />
+      <DeleteButton itemId={item.id} />
     </BakeryWrapper>
   );
 };

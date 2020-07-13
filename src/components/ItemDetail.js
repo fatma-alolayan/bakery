@@ -1,14 +1,17 @@
 import React from "react";
 import { useParams, Link, Redirect } from "react-router-dom";
+import { observer } from "mobx-react";
+// store
+import itemStore from "../stores/itemStore";
 
 import DeleteButton from "./buttons/DeleteButton";
 
 import { ListWrapper, DetailWrapper } from "../styles";
 
-const ItemDetail = ({ items, deleteItem }) => {
+const ItemDetail = () => {
   const { itemSlug } = useParams();
 
-  const item = items.find((item) => item.slug === itemSlug);
+  const item = itemStore.items.find((item) => item.slug === itemSlug);
 
   if (!item) return <Redirect to="/Bakery" />;
 
@@ -21,9 +24,9 @@ const ItemDetail = ({ items, deleteItem }) => {
         <p>{item.description}</p>
         <p>{item.price} KD</p>
 
-        <DeleteButton itemId={item.id} deleteItem={deleteItem} />
+        <DeleteButton itemId={item.id} />
       </DetailWrapper>
     </ListWrapper>
   );
 };
-export default ItemDetail;
+export default observer(ItemDetail);

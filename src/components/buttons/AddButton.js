@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { MdAddCircleOutline } from "react-icons/md";
 import BakeryModal from "../modals/BakeryModal";
 
-const AddButton = ({ createItem }) => {
+const AddButton = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const closeModal = () => setIsOpen(false);
@@ -15,11 +15,7 @@ const AddButton = ({ createItem }) => {
         size="2em"
         onClick={openModal}
       />
-      <BakeryModal
-        isOpen={isOpen}
-        closeModal={closeModal}
-        createItem={createItem}
-      />
+      <BakeryModal isOpen={isOpen} closeModal={closeModal} />
     </div>
   );
 };

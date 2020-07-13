@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { Route, Switch } from "react-router";
+import slugify from "react-slugify";
 
 //styles
 import { GlobalStyle } from "./styles";
 // theme
 import { ThemeProvider } from "styled-components";
 
-// Data
-import items from "./items";
 // component
 import Home from "./components/Home";
 import BakeryList from "./components/BakeryList";
@@ -29,20 +28,9 @@ const theme = {
 
 function App() {
   const [currentTheme, setCurrentTheme] = useState("light");
-  const [_item, setItems] = useState(items);
 
   const toggleTheme = () =>
     setCurrentTheme(currentTheme === "light" ? "dark" : "light");
-
-  const deleteItem = (itemId) => {
-    const updatedItems = _item.filter((item) => item.id !== +itemId);
-    setItems(updatedItems);
-  };
-
-  const createItem = (newItem) => {
-    const updatedItems = [..._item, newItem];
-    setItems(updatedItems);
-  };
 
   return (
     <ThemeProvider theme={theme[currentTheme]}>
@@ -50,15 +38,11 @@ function App() {
       <NavBar toggleTheme={toggleTheme} currentTheme={currentTheme} />
       <Switch>
         <Route path="/Bakery/:itemSlug">
-          <ItemDetail items={_item} deleteItem={deleteItem} />
+          <ItemDetail />
         </Route>
 
         <Route path="/Bakery">
-          <BakeryList
-            item={_item}
-            deleteItem={deleteItem}
-            createItem={createItem}
-          />
+          <BakeryList />
         </Route>
         <Route path="/">
           <Home />

@@ -4,9 +4,12 @@ import { Link, NavLink } from "react-router-dom";
 export const Title = styled.h1`
   text-align: center;
   color: brown;
+  font-family: cursive;
+  font-size: 120px;
 `;
 export const Description = styled.h2`
   text-align: center;
+  font-family: Open Sans Condensed;
 `;
 export const ShopImage = styled.img`
   display: block;
@@ -14,20 +17,21 @@ export const ShopImage = styled.img`
   margin-right: auto;
   border: 2px solid gray;
   padding: 3px;
-  width: 400px;
+  width: 750px;
+  height: 450px;
 `;
 export const ListWrapper = styled.div`
   align-items: center;
   justify-content: center;
-
+  font-size: 24px;
   display: flex;
 `;
 export const BakeryWrapper = styled.div`
   margin: 20px;
 
   img {
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
     border: 2px solid gray;
     padding: 3px;
   }
@@ -72,13 +76,14 @@ export const DetailWrapper = styled.div`
   text-align: center;
 
   img {
-    width: 250px;
+    width: 400px;
     border: 2px solid gray;
     padding: 3px;
   }
 
   p {
     vertical-align: middle;
+    font-size: 24px;
   }
 `;
 export const SearchBarStyled = styled.input`
@@ -94,7 +99,7 @@ export const HomeButton = styled.button`
     padding: 15px 32px;
     text-align: center;
     display: inline-block;
-    font-size: 16px;
+    font-size: 20px;
     margin: 4px 2px;
     cursor: pointer;
   }

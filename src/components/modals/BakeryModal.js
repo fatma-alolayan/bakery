@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 //styles
 import { CreateButtonStyled } from "../../styles";
+// store
+import itemStore from "../../stores/itemStore";
 
 const customStyle = {
   content: {
@@ -14,7 +16,7 @@ const customStyle = {
   },
 };
 
-const BakeryModal = ({ isOpen, closeModal, createItem }) => {
+const BakeryModal = ({ isOpen, closeModal }) => {
   const [item, setItem] = useState({
     name: "",
     price: 0,
@@ -28,7 +30,7 @@ const BakeryModal = ({ isOpen, closeModal, createItem }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createItem(item);
+    itemStore.createItem(item);
     closeModal();
   };
 
@@ -45,6 +47,7 @@ const BakeryModal = ({ isOpen, closeModal, createItem }) => {
           <div className="col-6">
             <label>Name</label>
             <input
+              required
               name="name"
               type="text"
               onChange={handleChange}
@@ -54,8 +57,9 @@ const BakeryModal = ({ isOpen, closeModal, createItem }) => {
           <div className="col-6">
             <label>Price</label>
             <input
+              required
               name="price"
-              type="number"
+              type="number.float"
               min="1"
               onChange={handleChange}
               className="form-control"
@@ -65,6 +69,7 @@ const BakeryModal = ({ isOpen, closeModal, createItem }) => {
         <div className="form-group">
           <label>Description</label>
           <input
+            required
             name="description"
             type="text"
             onChange={handleChange}
@@ -74,13 +79,13 @@ const BakeryModal = ({ isOpen, closeModal, createItem }) => {
         <div className="form-group">
           <label>Image</label>
           <input
+            required
             name="image"
             type="text"
             onChange={handleChange}
             className="form-control"
           />
         </div>
-
         <CreateButtonStyled>create</CreateButtonStyled>
       </form>
     </Modal>

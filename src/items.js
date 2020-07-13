@@ -3,7 +3,7 @@ const items = [
     id: 1,
     name: "Plain Croissant",
     slug: "plain-croissant",
-    description: "Low Fat",
+    description: "Sugar Free",
     price: 1,
     image:
       "https://millwayfoods.com/wp-content/uploads/2017/03/Plain-Croissant-800x600.jpg",
@@ -12,7 +12,7 @@ const items = [
     id: 2,
     name: "Cheese Croissant",
     slug: "cheese-croissant",
-    description: "Sugar Free ",
+    description: "Low Fat",
     price: 1.5,
     image:
       "https://www.womanscribbles.net/wp-content/uploads/2017/07/cream-cheese-croissants-7.jpg",
