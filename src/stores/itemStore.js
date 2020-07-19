@@ -1,11 +1,21 @@
 import { decorate, observable } from "mobx";
 import slugify from "react-slugify";
+import axios from "axios";
 
 // data
-import items from "../items";
+// import items from "../items";
 
 class ItemStore {
-  items = items;
+  items = [];
+
+  fetchItems = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/items");
+      this.items = response.data;
+    } catch (error) {
+      console.error("ItemStore -> fetchItems -> error", error);
+    }
+  };
 
   createItem = (newItem) => {
     newItem.id = this.items[this.items.length - 1].id + 1;
@@ -27,5 +37,6 @@ class ItemStore {
 decorate(ItemStore, { items: observable });
 
 const itemStore = new ItemStore();
+itemStore.fetchItems();
 
 export default itemStore;

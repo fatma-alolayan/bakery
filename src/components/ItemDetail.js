@@ -3,7 +3,7 @@ import { useParams, Link, Redirect } from "react-router-dom";
 import { observer } from "mobx-react";
 // store
 import itemStore from "../stores/itemStore";
-
+import UpdateButton from "./buttons/UpdateButton";
 import DeleteButton from "./buttons/DeleteButton";
 
 import { ListWrapper, DetailWrapper } from "../styles";
@@ -23,7 +23,7 @@ const ItemDetail = () => {
         <img src={item.image} alt={item.name} />
         <p>{item.description}</p>
         <p>{item.price} KD</p>
-
+        <UpdateButton item={item} />
         <DeleteButton itemId={item.id} />
       </DetailWrapper>
     </ListWrapper>

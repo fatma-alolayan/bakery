@@ -8,7 +8,6 @@ import UpdateButton from "./buttons/UpdateButton";
 
 // styles
 import { BakeryWrapper } from "../styles";
-import items from "../items";
 
 const BakeryItem = ({ item }) => {
   return (
