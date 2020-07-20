@@ -29,14 +29,20 @@ class ItemStore {
     for (const key in item) item[key] = updatedItem[key];
   };
 
-  deleteItem = (itemId) => {
-    this.items = this.items.filter((item) => item.id !== +itemId);
+  deleteItem = async (itemId) => {
+    try {
+      await axios.delete(`http://localhost:8000/items/${itemId}`);
+      this.items = this.items.filter((item) => item.id !== +itemId);
+    } catch (error) {
+      console.log("itemStore -> deleteItem -> error", error);
+    }
   };
 }
 
 decorate(ItemStore, { items: observable });
 
 const itemStore = new ItemStore();
+
 itemStore.fetchItems();
 
 export default itemStore;
