@@ -17,10 +17,17 @@ class ItemStore {
     }
   };
 
-  createItem = (newItem) => {
-    newItem.id = this.items[this.items.length - 1].id + 1;
-    newItem.slug = slugify(newItem.name);
-    this.items.push(newItem);
+  createItem = async (newItem) => {
+    try {
+      const res = await axios.post("http://localhost:8000/items", newItem);
+      this.items.push(res.data);
+    } catch (error) {
+      console.log("ItemStore -> createItem -> error", error);
+    }
+
+    // newItem.id = this.items[this.items.length - 1].id + 1;
+    // newItem.slug = slugify(newItem.name);
+    // this.items.push(newItem);
   };
 
   updateItem = (updatedItem) => {
