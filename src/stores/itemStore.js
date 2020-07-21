@@ -37,7 +37,7 @@ class ItemStore {
         updatedItem
       );
       const item = this.items.find((item) => item.id === updatedItem.id);
-      for (const key in item) item[key] = updatedItem[key];
+      for (const key in updatedItem) updatedItem[key] = updatedItem[key];
     } catch (error) {
       console.log("ItemStore -> updateItem -> error", error);
     }
