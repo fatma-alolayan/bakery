@@ -30,10 +30,17 @@ class ItemStore {
     // this.items.push(newItem);
   };
 
-  updateItem = (updatedItem) => {
-    const item = this.items.find((item) => item.id === updatedItem.id);
-
-    for (const key in item) item[key] = updatedItem[key];
+  updateItem = async (updatedItem) => {
+    try {
+      await axios.put(
+        `http://localhost:8000/items/${updatedItem.id}`,
+        updatedItem
+      );
+      const item = this.items.find((item) => item.id === updatedItem.id);
+      for (const key in item) item[key] = updatedItem[key];
+    } catch (error) {
+      console.log("ItemStore -> updateItem -> error", error);
+    }
   };
 
   deleteItem = async (itemId) => {
