@@ -19,15 +19,13 @@ class ItemStore {
 
   createItem = async (newItem) => {
     try {
+      const formData = new FormData();
+      for (const key in newItem) formData.append(key, newItem[key]);
       const res = await axios.post("http://localhost:8000/items", newItem);
       this.items.push(res.data);
     } catch (error) {
       console.log("ItemStore -> createItem -> error", error);
     }
-
-    // newItem.id = this.items[this.items.length - 1].id + 1;
-    // newItem.slug = slugify(newItem.name);
-    // this.items.push(newItem);
   };
 
   updateItem = async (updatedItem) => {

@@ -30,6 +30,9 @@ const BakeryModal = ({ isOpen, closeModal, oldItem }) => {
     setItem(newItem);
   };
 
+  const handleImage = (event) =>
+    setItem({ ...item, image: event.target.files[0] });
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -88,10 +91,9 @@ const BakeryModal = ({ isOpen, closeModal, oldItem }) => {
           <input
             required
             name="image"
-            type="text"
-            onChange={handleChange}
+            type="file"
+            onChange={handleImage}
             className="form-control"
-            value={item.image}
           />
         </div>
         <CreateButtonStyled className="btn float-right" type="submit">
