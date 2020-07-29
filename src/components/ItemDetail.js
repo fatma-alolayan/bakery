@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, Link, Redirect } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import { observer } from "mobx-react";
 // store
 import itemStore from "../stores/itemStore";
@@ -19,7 +19,6 @@ const ItemDetail = () => {
     <ListWrapper>
       <DetailWrapper>
         <h1>{item.name}</h1>
-
         <img src={item.image} alt={item.name} />
         <p>{item.description}</p>
         <p>{item.price} KD</p>

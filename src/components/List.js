@@ -1,35 +1,30 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
 
-// store
-import itemStore from "../stores/itemStore";
-
 // style
 import { ListWrapper } from "../styles";
 
 //componants
-import BakeryItem from "./BakeryItem";
+import Item from "./Item";
 import SearchBar from "./SearchBar";
-import AddButton from "./buttons/AddButton";
 
-const BakeryList = () => {
+const List = ({ items }) => {
   const [query, setQuery] = useState("");
 
-  const filteredItems = itemStore.items.filter((item) =>
+  const filteredItems = items.filter((item) =>
     item.name.toLowerCase().includes(query.toLowerCase())
   );
 
   const itemsList = filteredItems.map((item) => (
-    <BakeryItem item={item} key={item.id} />
+    <Item item={item} key={item.id} />
   ));
 
   return (
     <>
       <SearchBar setQuery={setQuery} />
       <ListWrapper>{itemsList}</ListWrapper>
-      <AddButton />
     </>
   );
 };
 
-export default observer(BakeryList);
+export default observer(List);

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 
 // Components
+import ItemModal from "../modals/ItemModal";
 import BakeryModal from "../modals/BakeryModal";
 
 // Styles
 import { UpdateButtonStyled } from "../../styles";
 
-const UpdateButton = ({ item }) => {
+const UpdateButton = ({ bakery, item }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const closeModal = () => setIsOpen(false);
@@ -15,7 +16,15 @@ const UpdateButton = ({ item }) => {
   return (
     <>
       <UpdateButtonStyled onClick={openModal}>Update</UpdateButtonStyled>
-      <BakeryModal isOpen={isOpen} closeModal={closeModal} oldItem={item} />
+      {bakery ? (
+        <BakeryModal
+          isOpen={isOpen}
+          closeModal={closeModal}
+          oldBakery={bakery}
+        />
+      ) : (
+        <ItemModal isOpen={isOpen} closeModal={closeModal} oldItem={item} />
+      )}
     </>
   );
 };

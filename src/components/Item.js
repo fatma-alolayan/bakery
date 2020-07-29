@@ -9,7 +9,7 @@ import UpdateButton from "./buttons/UpdateButton";
 // styles
 import { BakeryWrapper } from "../styles";
 
-const BakeryItem = ({ item }) => {
+const Item = ({ item }) => {
   return (
     <BakeryWrapper>
       <Link to={`/Bakery/${item.slug}`}>
@@ -23,4 +23,4 @@ const BakeryItem = ({ item }) => {
   );
 };
 
-export default observer(BakeryItem);
+export default observer(Item);

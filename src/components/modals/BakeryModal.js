@@ -3,7 +3,7 @@ import Modal from "react-modal";
 //styles
 import { CreateButtonStyled } from "../../styles";
 // store
-import itemStore from "../../stores/itemStore";
+import bakeryStore from "../../stores/bakeryStore";
 
 const customStyle = {
   content: {
@@ -16,27 +16,27 @@ const customStyle = {
   },
 };
 
-const BakeryModal = ({ isOpen, closeModal, oldItem }) => {
-  const [item, setItem] = useState(
-    oldItem ?? {
+const BakeryModal = ({ isOpen, closeModal, oldBakery }) => {
+  const [bakery, setBakery] = useState(
+    oldBakery ?? {
       name: "",
-      price: 0,
-      description: "",
       image: "",
     }
   );
   const handleChange = (event) => {
-    const newItem = { ...item, [event.target.name]: event.target.value };
-    setItem(newItem);
+    const newBakery = { ...bakery, [event.target.name]: event.target.value };
+    setBakery(newBakery);
   };
 
   const handleImage = (event) =>
-    setItem({ ...item, image: event.target.files[0] });
+    setBakery({ ...bakery, image: event.target.files[0] });
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    oldItem ? itemStore.updateItem(item) : itemStore.createItem(item);
+    oldBakery
+      ? bakeryStore.updateBakery(bakery)
+      : bakeryStore.createBakery(bakery);
 
     closeModal();
   };
@@ -48,48 +48,22 @@ const BakeryModal = ({ isOpen, closeModal, oldItem }) => {
       style={customStyle}
       contentLabel="Bakery Modal"
     >
-      <h3>New Item</h3>
+      <h3>New Bakery</h3>
       <form onSubmit={handleSubmit}>
-        <div className="form-group row">
-          <div className="col-6">
-            <label>Name</label>
-            <input
-              required
-              name="name"
-              type="text"
-              onChange={handleChange}
-              className="form-control"
-              value={item.name}
-            />
-          </div>
-          <div className="col-6">
-            <label>Price</label>
-            <input
-              required
-              name="price"
-              type="number.float"
-              min="1"
-              onChange={handleChange}
-              className="form-control"
-              value={item.price}
-            />
-          </div>
-        </div>
         <div className="form-group">
-          <label>Description</label>
+          <label>Name</label>
           <input
-            required
-            name="description"
+            name="name"
             type="text"
             onChange={handleChange}
             className="form-control"
-            value={item.description}
+            value={bakery.name}
           />
         </div>
+
         <div className="form-group">
           <label>Image</label>
           <input
-            required
             name="image"
             type="file"
             onChange={handleImage}
@@ -97,7 +71,7 @@ const BakeryModal = ({ isOpen, closeModal, oldItem }) => {
           />
         </div>
         <CreateButtonStyled className="btn float-right" type="submit">
-          {oldItem ? "Update" : "Create"}
+          {oldBakery ? "Update" : "Create"}
         </CreateButtonStyled>
       </form>
     </Modal>

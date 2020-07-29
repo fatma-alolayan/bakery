@@ -1,5 +1,5 @@
 import { decorate, observable } from "mobx";
-import slugify from "react-slugify";
+
 import axios from "axios";
 
 // data
@@ -7,11 +7,13 @@ import axios from "axios";
 
 class ItemStore {
   items = [];
+  loading = true;
 
   fetchItems = async () => {
     try {
       const response = await axios.get("http://localhost:8000/items");
       this.items = response.data;
+      this.loading = false;
     } catch (error) {
       console.error("ItemStore -> fetchItems -> error", error);
     }
@@ -21,7 +23,10 @@ class ItemStore {
     try {
       const formData = new FormData();
       for (const key in newItem) formData.append(key, newItem[key]);
-      const res = await axios.post("http://localhost:8000/items", newItem);
+      const res = await axios.post(
+        `http://localhost:8000/bakeries/${newItem.bakeryId}/items`,
+        formData
+      );
       this.items.push(res.data);
     } catch (error) {
       console.log("ItemStore -> createItem -> error", error);
@@ -51,7 +56,10 @@ class ItemStore {
   };
 }
 
-decorate(ItemStore, { items: observable });
+decorate(ItemStore, {
+  items: observable,
+  loading: observable,
+});
 
 const itemStore = new ItemStore();
 

@@ -1,8 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 //logo
 import bake from "../Bake.jpeg";
-import { Description, ShopImage, Title, HomeButton } from "../styles";
+import { Description, ShopImage, Title } from "../styles";
 
 const Home = () => {
   return (

@@ -4,7 +4,7 @@ import React from "react";
 import logo from "../chef.png";
 
 // Styling
-import { Logo, ThemeButton, NavStyled, NavItem } from "../styles";
+import { Logo, NavStyled, NavItem } from "../styles";
 
 const NavBar = ({ currentTheme, toggleTheme }) => {
   return (
@@ -15,6 +15,9 @@ const NavBar = ({ currentTheme, toggleTheme }) => {
 
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav ml-auto">
+          <NavItem className="nav-item" to="/bakeries">
+            Bakeries
+          </NavItem>
           <NavItem className="nav-item" to="/Bakery">
             Bakery
           </NavItem>
@@ -30,9 +33,6 @@ const NavBar = ({ currentTheme, toggleTheme }) => {
               {currentTheme === "light" ? "Dark" : "Light"} Mode
             </label>
           </div>
-          {/* <ThemeButton className="nav-item " onClick={toggleTheme}>
-            {currentTheme === "light" ? "Dark" : "Light"} Mode
-          </ThemeButton> */}
         </div>
       </div>
     </NavStyled>
