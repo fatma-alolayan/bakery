@@ -3,7 +3,7 @@ import { MdAddCircleOutline } from "react-icons/md";
 import ItemModal from "../modals/ItemModal";
 import BakeryModal from "../modals/BakeryModal";
 
-const AddButton = ({ bakeryId }) => {
+const AddButton = ({ bakery }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const closeModal = () => setIsOpen(false);
@@ -16,12 +16,8 @@ const AddButton = ({ bakeryId }) => {
         size="2em"
         onClick={openModal}
       />
-      {bakeryId ? (
-        <ItemModal
-          bakeryId={bakeryId}
-          isOpen={isOpen}
-          closeModal={closeModal}
-        />
+      {bakery ? (
+        <ItemModal bakery={bakery} isOpen={isOpen} closeModal={closeModal} />
       ) : (
         <BakeryModal isOpen={isOpen} closeModal={closeModal} />
       )}

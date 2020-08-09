@@ -3,7 +3,7 @@ import Modal from "react-modal";
 //styles
 import { CreateButtonStyled } from "../../styles";
 // store
-import itemStore from "../../stores/itemStore";
+import authStore from "../../stores/authStore";
 
 const customStyle = {
   content: {
@@ -16,28 +16,20 @@ const customStyle = {
   },
 };
 
-const ItemModal = ({ bakery, isOpen, closeModal, oldItem }) => {
-  const [item, setItem] = useState(
-    oldItem ?? {
-      name: "",
-      price: 0,
-      description: "",
-      image: "",
-    }
-  );
-  const handleChange = (event) => {
-    const newItem = { ...item, [event.target.name]: event.target.value };
-    setItem(newItem);
-  };
-
-  const handleImage = (event) =>
-    setItem({ ...item, image: event.target.files[0] });
+const SignupModal = ({ isOpen, closeModal }) => {
+  const [user, setUser] = useState({
+    firstName: "",
+    lastName: "",
+    username: "",
+    password: "",
+    email: "",
+  });
+  const handleChange = (event) =>
+    setUser({ ...user, [event.target.name]: event.target.value });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    itemStore[oldItem ? "updateItem" : "createItem"](item, bakery);
-
+    authStore.signup(user);
     closeModal();
   };
 
@@ -49,55 +41,65 @@ const ItemModal = ({ bakery, isOpen, closeModal, oldItem }) => {
       contentLabel="Item Modal"
     >
       <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label>Username</label>
+          <input
+            name="username"
+            value={user.username}
+            type="text"
+            className="form-control"
+            onChange={handleChange}
+          />
+        </div>
         <div className="form-group row">
           <div className="col-6">
-            <label>Name</label>
+            <label>First Name</label>
             <input
-              required
-              name="name"
+              name="firstName"
+              value={user.firstName}
               type="text"
-              onChange={handleChange}
               className="form-control"
-              value={item.name}
+              onChange={handleChange}
             />
           </div>
           <div className="col-6">
-            <label>Price</label>
+            <label>Last Name</label>
             <input
-              name="price"
-              type="number.float"
-              min="1"
-              onChange={handleChange}
+              name="lastName"
+              value={user.lastName}
+              type="text"
               className="form-control"
-              value={item.price}
+              onChange={handleChange}
             />
           </div>
         </div>
         <div className="form-group">
-          <label>Description</label>
+          <label>Email</label>
           <input
-            name="description"
+            name="email"
+            value={user.email}
             type="text"
-            onChange={handleChange}
             className="form-control"
-            value={item.description}
+            onChange={handleChange}
           />
         </div>
         <div className="form-group">
-          <label>Image</label>
+          <label>Password</label>
           <input
-            name="image"
-            type="file"
-            onChange={handleImage}
+            name="password"
+            value={user.password}
+            type="text"
             className="form-control"
+            onChange={handleChange}
           />
         </div>
+
         <CreateButtonStyled className="btn float-right" type="submit">
-          {oldItem ? "Update" : "Create"}
+          Sign up
         </CreateButtonStyled>
       </form>
     </Modal>
   );
 };
 
-export default ItemModal;
+export default SignupModal;

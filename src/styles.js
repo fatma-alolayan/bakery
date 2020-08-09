@@ -5,7 +5,7 @@ export const Title = styled.h1`
   text-align: center;
   color: brown;
   font-family: cursive;
-  font-size: 120px;
+  font-size: 90px;
 `;
 export const Description = styled.h2`
   text-align: center;
@@ -17,8 +17,8 @@ export const ShopImage = styled.img`
   margin-right: auto;
   border: 2px solid gray;
   padding: 3px;
-  width: 750px;
-  height: 450px;
+  width: 550px;
+  height: 250px;
 `;
 export const ListWrapper = styled.div`
   align-items: center;
@@ -30,8 +30,8 @@ export const BakeryWrapper = styled.div`
   margin: 20px;
 
   img {
-    width: 300px;
-    height: 300px;
+    width: 200px;
+    height: 200px;
     border: 2px solid gray;
     padding: 3px;
   }
@@ -76,7 +76,7 @@ export const DetailWrapper = styled.div`
   text-align: center;
 
   img {
-    width: 400px;
+    width: 200px;
     border: 2px solid gray;
     padding: 3px;
   }
@@ -136,4 +136,13 @@ export const CreateButtonStyled = styled.button`
 
 export const UpdateButtonStyled = styled.p`
   color: ${(props) => props.theme.pink};
+`;
+
+export const AuthButtonStyled = styled.button`
+  font-size: 1em;
+  padding: 0.25em 1em;
+  margin-right: 0.5em;
+  border-radius: 3px;
+  background-color: ___CSS_0___;
+  color: ___CSS_1___;
 `;

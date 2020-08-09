@@ -4,7 +4,10 @@ import React from "react";
 import logo from "../chef.png";
 
 // Styling
-import { Logo, NavStyled, NavItem } from "../styles";
+import { Logo, NavStyled, NavItem, ThemeButton } from "../styles";
+
+//component
+import SignupButton from "../components/buttons/SignupButton";
 
 const NavBar = ({ currentTheme, toggleTheme }) => {
   return (
@@ -29,9 +32,13 @@ const NavBar = ({ currentTheme, toggleTheme }) => {
               id="customSwitch1"
               onChange={toggleTheme}
             />
-            <label class="custom-control-label" for="customSwitch1">
+            {/* <label class="custom-control-label" for="customSwitch1">
               {currentTheme === "light" ? "Dark" : "Light"} Mode
-            </label>
+            </label> */}
+            <SignupButton />
+            <ThemeButton className="nav-item" onClick={toggleTheme}>
+              {currentTheme === "light" ? "Dark" : "Light"} Mode
+            </ThemeButton>
           </div>
         </div>
       </div>

@@ -39,6 +39,7 @@ class BakeryStore {
         (bakery) => bakery.id === updatedBakery.id
       );
       for (const key in updatedBakery) bakery[key] = updatedBakery[key];
+      bakery.image = URL.createObjectURL(updatedBakery.image);
     } catch (error) {
       console.log("BakeryStore -> updateBakery -> error", error);
     }

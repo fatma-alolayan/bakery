@@ -9,6 +9,8 @@ import DeleteButton from "../buttons/DeleteButton";
 //style
 import { DetailWrapper } from "../../styles";
 import bakeryStore from "../../stores/bakeryStore";
+//store
+import itemStore from "../../stores/itemStore";
 
 const BakeryDetail = () => {
   const { bakerySlug } = useParams();
@@ -19,16 +21,19 @@ const BakeryDetail = () => {
 
   if (!bakery) return <Redirect to="/bakeries" />;
 
+  const items = bakery.items
+    .map((item) => itemStore.getItemById(item.id))
+    .filter((item) => item);
+
   return (
     <>
       <DetailWrapper>
         <h4>{bakery.name}</h4>
         <img src={bakery.image} alt={bakery.name} />
-        <UpdateButton bakery={bakery} />
       </DetailWrapper>
-      <List items={bakery.items} />
+      <List items={items} />
       <AddButton bakeryId={bakery.id} />
-      <DeleteButton bakeryId={bakery.id} />
+      {/* <DeleteButton bakeryId={bakery.id} /> */}
     </>
   );
 };

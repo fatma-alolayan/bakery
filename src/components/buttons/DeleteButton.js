@@ -8,10 +8,10 @@ import itemStore from "../../stores/itemStore";
 import { DeleteButtonStyled } from "../../styles";
 import bakeryStore from "../../stores/bakeryStore";
 
-const DeleteButton = ({ bakeyaId, itemId }) => {
+const DeleteButton = ({ bakeryId, itemId }) => {
   const handleDelete = () => {
     if (itemId) itemStore.deleteItem(itemId);
-    else bakeryStore.deleteBakery(bakeyaId);
+    else bakeryStore.deleteBakery(bakeryId);
   };
 
   return <DeleteButtonStyled onClick={handleDelete}>Delete</DeleteButtonStyled>;

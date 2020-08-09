@@ -48,11 +48,11 @@ const BakeryModal = ({ isOpen, closeModal, oldBakery }) => {
       style={customStyle}
       contentLabel="Bakery Modal"
     >
-      <h3>New Bakery</h3>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Name</label>
           <input
+            required
             name="name"
             type="text"
             onChange={handleChange}
@@ -60,7 +60,6 @@ const BakeryModal = ({ isOpen, closeModal, oldBakery }) => {
             value={bakery.name}
           />
         </div>
-
         <div className="form-group">
           <label>Image</label>
           <input

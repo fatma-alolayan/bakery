@@ -19,15 +19,19 @@ class ItemStore {
     }
   };
 
-  createItem = async (newItem) => {
+  getItemById = (itemId) => this.items.find((item) => item.id === itemId);
+
+  createItem = async (newItem, bakery) => {
     try {
       const formData = new FormData();
       for (const key in newItem) formData.append(key, newItem[key]);
       const res = await axios.post(
-        `http://localhost:8000/bakeries/${newItem.bakeryId}/items`,
+        `http://localhost:8000/bakeries/${bakery.id}/items`,
         formData
       );
-      this.items.push(res.data);
+      const item = res.data;
+      this.items.push(item);
+      bakery.items.push({ id: item.id });
     } catch (error) {
       console.log("ItemStore -> createItem -> error", error);
     }
@@ -35,12 +39,15 @@ class ItemStore {
 
   updateItem = async (updatedItem) => {
     try {
+      const formData = new FormData();
+      for (const key in updatedItem) formData.append(key, updatedItem[key]);
       await axios.put(
         `http://localhost:8000/items/${updatedItem.id}`,
-        updatedItem
+        formData
       );
       const item = this.items.find((item) => item.id === updatedItem.id);
-      for (const key in updatedItem) updatedItem[key] = updatedItem[key];
+      for (const key in updatedItem) item[key] = updatedItem[key];
+      item.image = URL.createObjectURL(updatedItem.image);
     } catch (error) {
       console.log("ItemStore -> updateItem -> error", error);
     }
