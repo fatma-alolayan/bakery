@@ -1,6 +1,6 @@
 import { decorate, observable } from "mobx";
 
-import axios from "axios";
+import instance from "./instance";
 
 class BakeryStore {
   bakeries = [];
@@ -8,7 +8,7 @@ class BakeryStore {
 
   fetchBakeries = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/bakeries");
+      const response = await instance.get("/bakeries");
       this.bakeries = response.data;
       this.loading = false;
     } catch (error) {
@@ -20,7 +20,7 @@ class BakeryStore {
     try {
       const formData = new FormData();
       for (const key in newBakery) formData.append(key, newBakery[key]);
-      const res = await axios.post("http://localhost:8000/bakeries", formData);
+      const res = await instance.post("/bakeries", formData);
       this.bakeries.push(res.data);
     } catch (error) {
       console.log("BakeryStore -> createBakery -> error", error);
@@ -31,10 +31,7 @@ class BakeryStore {
     try {
       const formData = new formData();
       for (const key in updatedBakery) formData.append(key, updatedBakery[key]);
-      await axios.put(
-        `http://localhost:8000/bakeries/${updatedBakery.id}`,
-        formData
-      );
+      await instance.put(`/bakeries/${updatedBakery.id}`, formData);
       const bakery = this.bakeries.find(
         (bakery) => bakery.id === updatedBakery.id
       );
@@ -47,7 +44,7 @@ class BakeryStore {
 
   deleteBakery = async (bakeryId) => {
     try {
-      await axios.delete(`http://localhost:8000/bakeries/${bakeryId}`);
+      await instance.delete(`/bakeries/${bakeryId}`);
       this.bakeries = this.bakeries.filter((bakery) => bakery.id !== +bakeryId);
     } catch (error) {
       console.log("BakeryStore -> deleteBakery -> error", error);

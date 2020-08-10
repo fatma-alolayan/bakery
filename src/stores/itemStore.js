@@ -1,6 +1,6 @@
 import { decorate, observable } from "mobx";
 
-import axios from "axios";
+import instance from "./instance";
 
 // data
 // import items from "../items";
@@ -11,7 +11,7 @@ class ItemStore {
 
   fetchItems = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/items");
+      const response = await instance.get("/items");
       this.items = response.data;
       this.loading = false;
     } catch (error) {
@@ -25,10 +25,7 @@ class ItemStore {
     try {
       const formData = new FormData();
       for (const key in newItem) formData.append(key, newItem[key]);
-      const res = await axios.post(
-        `http://localhost:8000/bakeries/${bakery.id}/items`,
-        formData
-      );
+      const res = await instance.post(`/${bakery.id}/items`, formData);
       const item = res.data;
       this.items.push(item);
       bakery.items.push({ id: item.id });
@@ -41,10 +38,7 @@ class ItemStore {
     try {
       const formData = new FormData();
       for (const key in updatedItem) formData.append(key, updatedItem[key]);
-      await axios.put(
-        `http://localhost:8000/items/${updatedItem.id}`,
-        formData
-      );
+      await instance.put(`/items/${updatedItem.id}`, formData);
       const item = this.items.find((item) => item.id === updatedItem.id);
       for (const key in updatedItem) item[key] = updatedItem[key];
       item.image = URL.createObjectURL(updatedItem.image);
@@ -55,7 +49,7 @@ class ItemStore {
 
   deleteItem = async (itemId) => {
     try {
-      await axios.delete(`http://localhost:8000/items/${itemId}`);
+      await instance.delete(`/items/${itemId}`);
       this.items = this.items.filter((item) => item.id !== +itemId);
     } catch (error) {
       console.log("itemStore -> deleteItem -> error", error);

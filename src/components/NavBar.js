@@ -7,7 +7,8 @@ import logo from "../chef.png";
 import { Logo, NavStyled, NavItem, ThemeButton } from "../styles";
 
 //component
-import SignupButton from "../components/buttons/SignupButton";
+import SignupButton from "./buttons/SignupButton";
+import SigninButton from "./buttons/SigninButton";
 
 const NavBar = ({ currentTheme, toggleTheme }) => {
   return (
@@ -36,6 +37,7 @@ const NavBar = ({ currentTheme, toggleTheme }) => {
               {currentTheme === "light" ? "Dark" : "Light"} Mode
             </label> */}
             <SignupButton />
+            <SigninButton />
             <ThemeButton className="nav-item" onClick={toggleTheme}>
               {currentTheme === "light" ? "Dark" : "Light"} Mode
             </ThemeButton>
