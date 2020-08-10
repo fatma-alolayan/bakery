@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
+
 //styles
 import { CreateButtonStyled } from "../../styles";
 // store
@@ -55,7 +56,7 @@ const SignupModal = ({ isOpen, closeModal }) => {
           <input
             name="password"
             value={user.password}
-            type="text"
+            type="password"
             className="form-control"
             onChange={handleChange}
           />

@@ -1,4 +1,5 @@
 import React from "react";
+import { observer } from "mobx-react";
 
 //logo
 import logo from "../chef.png";
@@ -10,6 +11,9 @@ import { Logo, NavStyled, NavItem, ThemeButton } from "../styles";
 import SignupButton from "./buttons/SignupButton";
 import SigninButton from "./buttons/SigninButton";
 
+//store
+import authStore from "../stores/authStore";
+
 const NavBar = ({ currentTheme, toggleTheme }) => {
   return (
     <NavStyled className="navbar navbar-expand-lg ">
@@ -19,12 +23,16 @@ const NavBar = ({ currentTheme, toggleTheme }) => {
 
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav ml-auto">
-          <NavItem className="nav-item" to="/bakeries">
-            Bakeries
-          </NavItem>
-          <NavItem className="nav-item" to="/Bakery">
-            Bakery
-          </NavItem>
+          {authStore.user && authStore.user.role === "admin" && (
+            <>
+              <NavItem className="nav-item" to="/bakeries">
+                Bakeries
+              </NavItem>
+              <NavItem className="nav-item" to="/items">
+                Bakery
+              </NavItem>
+            </>
+          )}
 
           <div class="custom-control custom-switch">
             <input
@@ -33,11 +41,14 @@ const NavBar = ({ currentTheme, toggleTheme }) => {
               id="customSwitch1"
               onChange={toggleTheme}
             />
-            {/* <label class="custom-control-label" for="customSwitch1">
-              {currentTheme === "light" ? "Dark" : "Light"} Mode
-            </label> */}
-            <SignupButton />
-            <SigninButton />
+            {authStore.user ? (
+              <p>Hello, {authStore.user.username}</p>
+            ) : (
+              <>
+                <SigninButton />
+                <SignupButton />
+              </>
+            )}
             <ThemeButton className="nav-item" onClick={toggleTheme}>
               {currentTheme === "light" ? "Dark" : "Light"} Mode
             </ThemeButton>
@@ -47,4 +58,4 @@ const NavBar = ({ currentTheme, toggleTheme }) => {
     </NavStyled>
   );
 };
-export default NavBar;
+export default observer(NavBar);
