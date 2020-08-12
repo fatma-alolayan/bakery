@@ -1,5 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
+import { FiLogOut } from "react-icons/fi";
 
 //logo
 import logo from "../chef.png";
@@ -23,7 +24,13 @@ const NavBar = ({ currentTheme, toggleTheme }) => {
 
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav ml-auto">
-          {authStore.user && authStore.user.role === "admin" && (
+          {authStore.user && (
+            <>
+              <p>Hello, {authStore.user.username}</p>
+              <FiLogOut onClick={authStore.signout} size="2em" color="red" />
+            </>
+          )}
+          {authStore.user?.role === "admin" && (
             <>
               <NavItem className="nav-item" to="/bakeries">
                 Bakeries
@@ -33,6 +40,8 @@ const NavBar = ({ currentTheme, toggleTheme }) => {
               </NavItem>
             </>
           )}
+          <SignupButton />
+          <SigninButton />
 
           <div class="custom-control custom-switch">
             <input
@@ -41,14 +50,6 @@ const NavBar = ({ currentTheme, toggleTheme }) => {
               id="customSwitch1"
               onChange={toggleTheme}
             />
-            {authStore.user ? (
-              <p>Hello, {authStore.user.username}</p>
-            ) : (
-              <>
-                <SigninButton />
-                <SignupButton />
-              </>
-            )}
             <ThemeButton className="nav-item" onClick={toggleTheme}>
               {currentTheme === "light" ? "Dark" : "Light"} Mode
             </ThemeButton>

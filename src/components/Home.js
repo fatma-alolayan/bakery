@@ -12,6 +12,7 @@ const Home = () => {
       <Description> Bake it till you make it </Description>
 
       <ShopImage src={bake} alt="logo" />
+
       <br></br>
     </>
   );

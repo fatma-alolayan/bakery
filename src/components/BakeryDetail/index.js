@@ -4,8 +4,7 @@ import { observer } from "mobx-react";
 //components
 import List from "../List";
 import AddButton from "../buttons/AddButton";
-import UpdateButton from "../buttons/UpdateButton";
-import DeleteButton from "../buttons/DeleteButton";
+
 //style
 import { DetailWrapper } from "../../styles";
 import bakeryStore from "../../stores/bakeryStore";

@@ -5,12 +5,11 @@ import { Redirect } from "react-router-dom";
 import authStore from "../stores/authStore";
 
 // style
-import { Title, ListWrapper } from "../styles";
+import { ListWrapper } from "../styles";
 
 //componants
 import Item from "./Item";
 import SearchBar from "./SearchBar";
-import AddButton from "../components/buttons/AddButton";
 
 const List = ({ items = [] }) => {
   const [query, setQuery] = useState("");
